@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Finalize seu pedido VitaCore Balance com segurança.">
+
+  <title>Checkout — VitaCore Balance</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/checkout.css">
+</head>
+
+<body>
+  <header class="checkout-header">
+    <div class="container checkout-header-content">
+      <a class="brand" href="index.html">
+        <span class="mark">V</span>
+        <span>VitaCore</span>
+      </a>
+
+      <p class="secure-message">
+        <span>✓</span>
+        Ambiente seguro
+      </p>
+    </div>
+  </header>
+
+  <main class="checkout-page">
+    <div class="container">
+      <div class="checkout-heading">
+        <a class="back-link" href="index.html">
+          ← Voltar para a oferta
+        </a>
+
+        <p class="eyebrow">Finalize seu pedido</p>
+
+        <h1>Complete seus dados para continuar.</h1>
+
+        <p>
+          Confira sua oferta, preencha as informações de entrega
+          e escolha a forma de pagamento.
+        </p>
+      </div>
+
+      <div class="checkout-layout">
+        <section class="checkout-form-card">
+          <form id="checkout-form" novalidate>
+            <!-- Dados pessoais -->
+
+            <div class="form-section">
+              <div class="form-section-heading">
+                <span>01</span>
+
+                <div>
+                  <h2>Dados pessoais</h2>
+                  <p>Preencha os campos obrigatórios.</p>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="form-group full">
+                  <label for="name">Nome completo</label>
+
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    autocomplete="name"
+                    placeholder="Digite seu nome"
+                    required
+                  >
+
+                  <small
+                    class="error-message"
+                    id="name-error"
+                  ></small>
+                </div>
+
+                <div class="form-group">
+                  <label for="email">E-mail</label>
+
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    autocomplete="email"
+                    placeholder="nome@email.com"
+                    required
+                  >
+
+                  <small
+                    class="error-message"
+                    id="email-error"
+                  ></small>
+                </div>
+
+                <div class="form-group">
+                  <label for="phone">Telefone</label>
+
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    autocomplete="tel"
+                    placeholder="(11) 99999-9999"
+                    required
+                  >
+
+                  <small
+                    class="error-message"
+                    id="phone-error"
+                  ></small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Endereço -->
+
+            <div class="form-section">
+              <div class="form-section-heading">
+                <span>02</span>
+
+                <div>
+                  <h2>Endereço de entrega</h2>
+                  <p>Informe onde deseja receber seu pedido.</p>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="country">País</label>
+
+                  <select id="country" name="country" required>
+                    <option value="">Selecione</option>
+                    <option value="BR">Brasil</option>
+                    <option value="US">Estados Unidos</option>
+                    <option value="PT">Portugal</option>
+                  </select>
+
+                  <small
+                    class="error-message"
+                    id="country-error"
+                  ></small>
+                </div>
+
+                <div class="form-group">
+                  <label for="postal-code">CEP ou código postal</label>
+
+                  <input
+                    type="text"
+                    id="postal-code"
+                    name="postalCode"
+                    autocomplete="postal-code"
+                    placeholder="00000-000"
+                    required
+                  >
+
+                  <small
+                    class="error-message"
+                    id="postal-code-error"
+                  ></small>
+                </div>
+
+                <div class="form-group full">
+                  <label for="address">Endereço</label>
+
+                  <input
+                    type="text"
+                    id="address"
+                    name="address"
+                    autocomplete="street-address"
+                    placeholder="Rua, avenida e número"
+                    required
+                  >
+
+                  <small
+                    class="error-message"
+                    id="address-error"
+                  ></small>
+                </div>
+
+                <div class="form-group">
+                  <label for="city">Cidade</label>
+
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    autocomplete="address-level2"
+                    placeholder="Sua cidade"
+                    required
+                  >
+
+                  <small
+                    class="error-message"
+                    id="city-error"
+                  ></small>
+                </div>
+
+                <div class="form-group">
+                  <label for="state">Estado ou região</label>
+
+                  <input
+                    type="text"
+                    id="state"
+                    name="state"
+                    autocomplete="address-level1"
+                    placeholder="Estado"
+                    required
+                  >
+
+                  <small
+                    class="error-message"
+                    id="state-error"
+                  ></small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pagamento -->
+
+            <div class="form-section">
+              <div class="form-section-heading">
+                <span>03</span>
+
+                <div>
+                  <h2>Pagamento</h2>
+                  <p>Escolha como deseja finalizar seu pedido.</p>
+                </div>
+              </div>
+
+              <div class="payment-notice">
+                <div class="payment-icon">✓</div>
+
+                <div>
+                  <strong>Pagamento protegido</strong>
+
+                  <p>
+                    Seus dados são protegidos durante todas as etapas
+                    da compra.
+                  </p>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="payment-method">
+                  Forma de pagamento
+                </label>
+
+                <select
+                  id="payment-method"
+                  name="paymentMethod"
+                  required
+                >
+                  <option value="">Selecione</option>
+                  <option value="credit-card">Cartão de crédito</option>
+                  <option value="pix">Pix</option>
+                </select>
+
+                <small
+                  class="error-message"
+                  id="payment-method-error"
+                ></small>
+              </div>
+            </div>
+
+            <!-- Termos -->
+
+            <div class="terms-field">
+              <input
+                type="checkbox"
+                id="terms"
+                name="terms"
+                required
+              >
+
+              <label for="terms">
+                Confirmo que revisei os dados do pedido e concordo
+                com os termos de compra e a política de privacidade.
+              </label>
+            </div>
+
+            <small
+              class="error-message"
+              id="terms-error"
+            ></small>
+
+            <button class="btn checkout-button" type="submit">
+              Finalizar pedido
+              <span>→</span>
+            </button>
+
+            <p class="form-security">
+              Compra protegida e informações processadas com segurança.
+            </p>
+          </form>
+        </section>
+
+        <!-- Resumo do pedido -->
+
+        <aside class="order-summary">
+          <p class="eyebrow">Resumo do pedido</p>
+
+          <div class="summary-product">
+            <img
+              src="assets/images/vitacore-produto.jpg"
+              alt="Frasco do suplemento VitaCore Balance"
+            >
+
+            <div>
+              <h2 id="summary-plan">Rotina Completa</h2>
+
+              <p id="summary-description">
+                3 frascos • 90 porções
+              </p>
+            </div>
+          </div>
+
+          <div class="summary-lines">
+            <div>
+              <span>Subtotal</span>
+              <strong id="summary-subtotal">R$ 239,00</strong>
+            </div>
+
+            <div>
+              <span>Entrega</span>
+              <strong>Grátis</strong>
+            </div>
+          </div>
+
+          <div class="summary-total">
+            <span>Total</span>
+            <strong id="summary-total">R$ 239,00</strong>
+          </div>
+
+          <div class="summary-details">
+            <p>
+              <span>✓</span>
+              Compra protegida
+            </p>
+
+            <p>
+              <span>✓</span>
+              Entrega rastreada
+            </p>
+
+            <p>
+              <span>✓</span>
+              Garantia de satisfação
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Confirmação -->
+
+  <div
+    class="checkout-success"
+    id="checkout-success"
+    role="status"
+    aria-live="polite"
+  >
+    <div class="success-icon">✓</div>
+
+    <div>
+      <strong>Pedido confirmado!</strong>
+      <p>Aguarde enquanto preparamos a próxima etapa.</p>
+    </div>
+  </div>
+
+  <script src="assets/js/checkout.js"></script>
+</body>
+</html>
