@@ -1,0 +1,12 @@
+# Configurações do VS Code
+.vscode/
+
+# Arquivos do Windows e macOS
+Thumbs.db
+.DS_Store
+
+# Arquivos de log
+*.log
+
+# Arquivos compactados
+*.zip
