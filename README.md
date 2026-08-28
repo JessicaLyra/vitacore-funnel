@@ -32,6 +32,18 @@ O projeto está sendo desenvolvido em etapas para demonstrar a construção e a 
 - Confirmação visual do pedido
 - Layout responsivo
 
+### Upsell
+
+- Recuperação do pedido pelo Session Storage
+- Exibição do nome do cliente e da oferta selecionada
+- Cálculo do valor original e do total com oferta adicional
+- Oferta de dois frascos extras
+- Registro de aceitação ou recusa
+- Atualização do total do pedido
+- Prevenção de cliques repetidos
+- Confirmação visual da escolha
+- Layout responsivo
+
 ## Tecnologias
 
 - HTML5
@@ -48,16 +60,19 @@ O projeto está sendo desenvolvido em etapas para demonstrar a construção e a 
 vitacore-funnel/
 ├── index.html
 ├── checkout.html
+├── upsell.html
 ├── README.md
 └── assets/
     ├── css/
     │   ├── styles.css
-    │   └── checkout.css
+    │   ├── checkout.css
+    │   └── upsell.css
     ├── images/
     │   └── vitacore-produto.png
     └── js/
         ├── main.js
-        └── checkout.js
+        ├── checkout.js
+        └── upsell.js
 ```
 
 ## Como executar
