@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Oferta especial VitaCore Balance para complementar seu pedido."
+  >
+
+  <title>Oferta Especial — VitaCore Balance</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/upsell.css">
+</head>
+
+<body>
+  <header class="upsell-header">
+    <div class="container upsell-header-content">
+      <a class="brand" href="index.html">
+        <span class="mark">V</span>
+        <span>VitaCore</span>
+      </a>
+
+      <p class="order-status">
+        <span>✓</span>
+        Pedido recebido
+      </p>
+    </div>
+  </header>
+
+  <main class="upsell-page">
+    <div class="container">
+      <div class="progress">
+        <div class="progress-item completed">
+          <span>1</span>
+          <p>Pedido</p>
+        </div>
+
+        <div class="progress-line completed"></div>
+
+        <div class="progress-item active">
+          <span>2</span>
+          <p>Oferta especial</p>
+        </div>
+
+        <div class="progress-line"></div>
+
+        <div class="progress-item">
+          <span>3</span>
+          <p>Confirmação</p>
+        </div>
+      </div>
+
+      <section class="upsell-card">
+        <div class="upsell-content">
+          <p class="eyebrow">Oferta exclusiva desta compra</p>
+
+          <h1>
+            Complete sua rotina com mais dois meses de VitaCore Balance.
+          </h1>
+
+          <p class="upsell-lead">
+            Adicione dois frascos ao seu pedido com uma condição especial
+            disponível somente nesta etapa.
+          </p>
+
+          <div class="customer-order" id="customer-order">
+            <span>✓</span>
+
+            <p>
+              <strong id="customer-name">Seu pedido está confirmado.</strong>
+              Aproveite esta condição antes de concluir.
+            </p>
+          </div>
+
+          <ul class="upsell-benefits">
+            <li>2 frascos adicionais</li>
+            <li>60 porções extras</li>
+            <li>Envio junto com o pedido atual</li>
+            <li>Nenhum frete adicional</li>
+          </ul>
+
+          <div class="upsell-pricing">
+            <div>
+              <p class="regular-price">
+                Preço regular: <span>R$ 198,00</span>
+              </p>
+
+              <p class="special-price">
+                R$ 149,00
+              </p>
+
+              <p class="installment">
+                Adição única ao pedido atual
+              </p>
+            </div>
+
+            <span class="discount-badge">
+              Economize<br>
+              R$ 49
+            </span>
+          </div>
+
+          <button
+            class="btn accept-upsell"
+            id="accept-upsell"
+            type="button"
+          >
+            Sim, adicionar ao meu pedido
+            <span>→</span>
+          </button>
+
+          <button
+            class="decline-upsell"
+            id="decline-upsell"
+            type="button"
+          >
+            Não, quero continuar sem esta oferta
+          </button>
+
+          <p class="secure-note">
+            <span>✓</span>
+            A oferta será adicionada ao mesmo pedido.
+          </p>
+        </div>
+
+        <div class="upsell-product">
+          <div class="product-visual">
+            <img
+              src="assets/images/vitacore-produto.jpg"
+              alt="VitaCore Balance"
+            >
+
+            <span class="quantity-badge">+2</span>
+          </div>
+
+          <div class="product-caption">
+            <p>Oferta complementar</p>
+            <strong>VitaCore Balance</strong>
+            <span>2 frascos • 60 porções</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="order-preview">
+        <header>
+          <p class="eyebrow">Seu pedido atual</p>
+          <h2>Resumo antes da confirmação</h2>
+        </header>
+
+        <div class="order-preview-grid">
+          <div>
+            <span>Oferta selecionada</span>
+            <strong id="current-plan">Rotina Completa</strong>
+          </div>
+
+          <div>
+            <span>Valor atual</span>
+            <strong id="current-total">R$ 239,00</strong>
+          </div>
+
+          <div>
+            <span>Com a oferta especial</span>
+            <strong id="total-with-upsell">R$ 388,00</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="upsell-assurance">
+        <div>
+          <span>✓</span>
+
+          <div>
+            <strong>Envio no mesmo pedido</strong>
+            <p>Os produtos seguem juntos, sem cobrança adicional de frete.</p>
+          </div>
+        </div>
+
+        <div>
+          <span>✓</span>
+
+          <div>
+            <strong>Compra protegida</strong>
+            <p>As informações do pedido permanecem protegidas.</p>
+          </div>
+        </div>
+
+        <div>
+          <span>✓</span>
+
+          <div>
+            <strong>Condição exclusiva</strong>
+            <p>Esta oferta está disponível somente nesta etapa.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div
+    class="upsell-message"
+    id="upsell-message"
+    role="status"
+    aria-live="polite"
+  >
+    <div class="message-icon">✓</div>
+
+    <div>
+      <strong id="message-title">Oferta adicionada!</strong>
+      <p id="message-description">
+        Estamos atualizando seu pedido.
+      </p>
+    </div>
+  </div>
+
+  <script src="assets/js/upsell.js"></script>
+</body>
+</html>

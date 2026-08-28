@@ -28,7 +28,8 @@ const queryParameters = new URLSearchParams(
 
 // Procura o parâmetro chamado "plan".
 // Se ele não existir, utiliza o plano 3 como padrão.
-const selectedPlanId = queryParameters.get("plan") || "3";
+const selectedPlanId =
+  queryParameters.get("plan") || "3";
 
 // Procura os dados do plano no objeto "plans".
 // Se o ID recebido for inválido, utiliza o plano 3.
@@ -66,7 +67,7 @@ const summaryTotal = document.getElementById(
  * Converte um número para o formato de moeda brasileira.
  *
  * Exemplo:
- * 239 vira R$ 239,00.
+ * 239 transforma-se em R$ 239,00.
  *
  * @param {number} price Valor que será formatado.
  * @returns {string} Valor formatado em reais.
@@ -104,7 +105,7 @@ function updateOrderSummary() {
  * Apresenta um erro em um campo do formulário.
  *
  * @param {HTMLElement} field Campo com erro.
- * @param {string} message Mensagem que será apresentada.
+ * @param {string} message Mensagem apresentada.
  */
 function showFieldError(field, message) {
   // Monta o ID da mensagem com base no ID do campo.
@@ -139,7 +140,7 @@ function clearFieldError(field) {
 
   // Verifica se existe uma área para a mensagem.
   if (errorElement) {
-    // Remove o texto de erro.
+    // Remove o texto do erro.
     errorElement.textContent = "";
   }
 }
@@ -151,8 +152,7 @@ function clearFieldError(field) {
  * @returns {boolean} Retorna true se o formato for válido.
  */
 function validateEmail(email) {
-  // Expressão regular que verifica:
-  // texto + @ + domínio + extensão.
+  // Verifica texto + @ + domínio + extensão.
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   return emailPattern.test(email);
@@ -228,7 +228,9 @@ function validateForm() {
   });
 
   // Seleciona especificamente o campo de e-mail.
-  const emailField = document.getElementById("email");
+  const emailField = document.getElementById(
+    "email"
+  );
 
   // Verifica se o e-mail foi preenchido,
   // mas não possui um formato válido.
@@ -245,14 +247,16 @@ function validateForm() {
   }
 
   // Seleciona o checkbox dos termos.
-  const termsField = document.getElementById("terms");
+  const termsField = document.getElementById(
+    "terms"
+  );
 
   // Seleciona a área reservada para o erro dos termos.
   const termsError = document.getElementById(
     "terms-error"
   );
 
-  // Limpa a mensagem anterior.
+  // Limpa uma possível mensagem anterior.
   termsError.textContent = "";
 
   // Verifica se os termos não foram aceitos.
@@ -268,10 +272,11 @@ function validateForm() {
 }
 
 /**
- * Cria um objeto com os dados necessários para a próxima etapa.
+ * Cria um objeto com os dados necessários
+ * para as próximas etapas do funil.
  *
- * Não armazenamos e-mail, telefone ou endereço, porque esses
- * dados não serão necessários na página de upsell.
+ * Não armazenamos e-mail, telefone ou endereço,
+ * pois esses dados não serão usados no Upsell.
  *
  * @returns {object} Pedido criado.
  */
@@ -299,8 +304,8 @@ function createOrder() {
     createdAt: new Date().toISOString()
   };
 
-  // Converte o objeto para texto e guarda no sessionStorage.
-  // O dado permanece somente durante a sessão do navegador.
+  // Converte o objeto para texto e guarda
+  // no Session Storage do navegador.
   sessionStorage.setItem(
     "vitacoreOrder",
     JSON.stringify(order)
@@ -315,9 +320,9 @@ checkoutForm.addEventListener("submit", (event) => {
   // Impede o navegador de recarregar a página.
   event.preventDefault();
 
-  // Executa a validação.
+  // Executa a validação dos campos.
   if (!validateForm()) {
-    // Localiza o primeiro campo que possui erro.
+    // Procura o primeiro campo que possui erro.
     const firstInvalidField =
       document.querySelector(".invalid");
 
@@ -326,23 +331,23 @@ checkoutForm.addEventListener("submit", (event) => {
       firstInvalidField.focus();
     }
 
-    // Interrompe a função.
+    // Interrompe o envio enquanto houver erros.
     return;
   }
 
-  // Cria e armazena o pedido.
+  // Cria o pedido e salva no Session Storage.
   createOrder();
 
-  // Mostra a confirmação visual.
+  // Mostra a mensagem "Pedido confirmado".
   successMessage.classList.add("show");
-
-  // Esconde a confirmação após quatro segundos.
-  setTimeout(() => {
-    successMessage.classList.remove("show");
-  }, 4000);
 
   // Registra a conclusão no Console.
   console.log("Pedido criado com sucesso.");
+
+  // Aguarda 1,5 segundo e abre o Upsell.
+  setTimeout(() => {
+    window.location.href = "upsell.html";
+  }, 1500);
 });
 
 // Seleciona todos os inputs e selects do formulário.
