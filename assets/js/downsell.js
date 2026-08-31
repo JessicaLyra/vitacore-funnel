@@ -1,38 +1,46 @@
-// Valor da oferta adicional apresentada no upsell.
-const upsellPrice = 149;
+// Valor da oferta apresentada no Downsell.
+const downsellPrice = 79;
 
-// Procura o pedido criado anteriormente pelo checkout.
+// Procura no Session Storage o pedido criado no checkout.
 const storedOrder = sessionStorage.getItem(
   "vitacoreOrder"
 );
 
-// Define um pedido padrão caso a página seja acessada
+// Cria um pedido padrão caso a página seja acessada
 // diretamente, sem passar pelo checkout.
 const defaultOrder = {
   planId: "3",
   planName: "Rotina Completa",
   quantity: 3,
   total: 239,
+  baseTotal: 239,
   customerName: "",
   country: "BR",
   paymentMethod: "",
-  createdAt: new Date().toISOString()
+  createdAt: new Date().toISOString(),
+  upsell: {
+    accepted: false,
+    productName: "VitaCore Balance",
+    quantity: 0,
+    price: 0
+  }
 };
 
-// Se existe um pedido no Session Storage, converte o texto
-// armazenado novamente para um objeto JavaScript.
+// Se houver um pedido armazenado, converte o texto JSON
+// novamente para um objeto JavaScript.
 // Caso contrário, utiliza o pedido padrão.
 const order = storedOrder
   ? JSON.parse(storedOrder)
   : defaultOrder;
 
-// Guarda separadamente o valor original do pedido.
-// Isso evita que o upsell seja somado mais de uma vez.
+// Recupera o valor original do pedido.
+// O baseTotal foi criado no Upsell para preservar
+// o valor antes das ofertas adicionais.
 const baseOrderTotal = Number(
   order.baseTotal || order.total
 );
 
-// Seleciona os elementos que receberão as informações do pedido.
+// Seleciona as informações do cliente e do pedido.
 const customerName = document.getElementById(
   "customer-name"
 );
@@ -45,22 +53,22 @@ const currentTotal = document.getElementById(
   "current-total"
 );
 
-const totalWithUpsell = document.getElementById(
-  "total-with-upsell"
+const totalWithDownsell = document.getElementById(
+  "total-with-downsell"
 );
 
-// Seleciona os botões de aceitar e recusar a oferta.
+// Seleciona os botões da oferta.
 const acceptButton = document.getElementById(
-  "accept-upsell"
+  "accept-downsell"
 );
 
 const declineButton = document.getElementById(
-  "decline-upsell"
+  "decline-downsell"
 );
 
-// Seleciona a mensagem apresentada depois da escolha.
-const upsellMessage = document.getElementById(
-  "upsell-message"
+// Seleciona a mensagem apresentada após a escolha.
+const downsellMessage = document.getElementById(
+  "downsell-message"
 );
 
 const messageIcon = document.querySelector(
@@ -75,14 +83,14 @@ const messageDescription = document.getElementById(
   "message-description"
 );
 
-// Guarda o temporizador usado para esconder a mensagem.
+// Guardará o temporizador da mensagem.
 let messageTimer;
 
 /**
  * Converte um número para o formato de moeda brasileira.
  *
  * Exemplo:
- * 149 transforma-se em R$ 149,00.
+ * 79 transforma-se em R$ 79,00.
  *
  * @param {number} price Valor que será formatado.
  * @returns {string} Valor formatado em reais.
@@ -95,20 +103,19 @@ function formatPrice(price) {
 }
 
 /**
- * Atualiza os dados visíveis na página com base
- * no pedido criado no checkout.
+ * Atualiza as informações visíveis do pedido.
  */
 function updateOrderPreview() {
-  // Exibe o nome da pessoa quando ele estiver disponível.
+  // Exibe o nome do cliente quando estiver disponível.
   if (order.customerName) {
     customerName.textContent =
-      `${order.customerName}, seu pedido está confirmado.`;
+      `${order.customerName}, seu pedido continua confirmado.`;
   } else {
     customerName.textContent =
-      "Seu pedido está confirmado.";
+      "Seu pedido continua confirmado.";
   }
 
-  // Exibe o nome do plano escolhido.
+  // Exibe o nome da oferta original.
   currentPlan.textContent = order.planName;
 
   // Exibe o valor original do pedido.
@@ -116,40 +123,40 @@ function updateOrderPreview() {
     baseOrderTotal
   );
 
-  // Calcula e exibe o valor total caso o upsell seja aceito.
-  totalWithUpsell.textContent = formatPrice(
-    baseOrderTotal + upsellPrice
+  // Calcula e exibe o total com o Downsell.
+  totalWithDownsell.textContent = formatPrice(
+    baseOrderTotal + downsellPrice
   );
 }
 
 /**
  * Mostra uma mensagem temporária após a escolha.
  *
- * @param {string} icon Símbolo exibido na mensagem.
+ * @param {string} icon Símbolo apresentado.
  * @param {string} title Título da mensagem.
- * @param {string} description Descrição apresentada.
+ * @param {string} description Descrição da mensagem.
  */
 function showMessage(icon, title, description) {
-  // Cancela uma mensagem anterior, caso exista.
+  // Cancela o temporizador anterior, caso exista.
   clearTimeout(messageTimer);
 
-  // Atualiza o conteúdo visual.
+  // Atualiza o conteúdo da mensagem.
   messageIcon.textContent = icon;
   messageTitle.textContent = title;
   messageDescription.textContent = description;
 
-  // Deixa a mensagem visível.
-  upsellMessage.classList.add("show");
+  // Exibe a mensagem.
+  downsellMessage.classList.add("show");
 
   // Esconde a mensagem depois de quatro segundos.
   messageTimer = setTimeout(() => {
-    upsellMessage.classList.remove("show");
+    downsellMessage.classList.remove("show");
   }, 4000);
 }
 
 /**
- * Desativa os botões depois que uma escolha é feita.
- * Isso evita cliques repetidos.
+ * Desativa os botões após a escolha.
+ * Isso impede que a oferta seja adicionada várias vezes.
  */
 function disableOfferButtons() {
   acceptButton.disabled = true;
@@ -157,25 +164,25 @@ function disableOfferButtons() {
 }
 
 /**
- * Registra a aceitação da oferta adicional.
+ * Registra a aceitação do Downsell.
  */
-function acceptUpsell() {
-  // Cria os dados da oferta adicional.
-  const upsell = {
+function acceptDownsell() {
+  // Cria as informações da oferta aceita.
+  const downsell = {
     accepted: true,
     productName: "VitaCore Balance",
-    quantity: 2,
-    price: upsellPrice
+    quantity: 1,
+    price: downsellPrice
   };
 
-  // Guarda o valor original do pedido.
+  // Preserva o valor original do pedido.
   order.baseTotal = baseOrderTotal;
 
-  // Adiciona as informações do upsell ao pedido.
-  order.upsell = upsell;
+  // Adiciona a escolha ao objeto do pedido.
+  order.downsell = downsell;
 
-  // Atualiza o valor final.
-  order.total = baseOrderTotal + upsellPrice;
+  // Atualiza o total com o frasco adicional.
+  order.total = baseOrderTotal + downsellPrice;
 
   // Salva o pedido atualizado no Session Storage.
   sessionStorage.setItem(
@@ -183,35 +190,39 @@ function acceptUpsell() {
     JSON.stringify(order)
   );
 
-  // Impede novos cliques.
+  // Impede cliques repetidos.
   disableOfferButtons();
 
-  // Mostra a confirmação.
+  // Mostra a confirmação para o cliente.
   showMessage(
     "✓",
     "Oferta adicionada!",
     `O novo total do pedido é ${formatPrice(order.total)}.`
   );
 
-  // Registra a escolha no Console.
-  console.log("Upsell aceito:", upsell);
+  // Registra o resultado no Console.
+  console.log("Downsell aceito:", downsell);
 }
 
 /**
- * Registra a recusa da oferta adicional.
+ * Registra a recusa do Downsell.
  */
-function declineUpsell() {
-  // Cria o registro da recusa.
-  const upsell = {
+function declineDownsell() {
+  // Cria as informações da oferta recusada.
+  const downsell = {
     accepted: false,
     productName: "VitaCore Balance",
     quantity: 0,
     price: 0
   };
 
-  // Mantém o total original.
+  // Preserva o valor original do pedido.
   order.baseTotal = baseOrderTotal;
-  order.upsell = upsell;
+
+  // Adiciona a recusa ao objeto do pedido.
+  order.downsell = downsell;
+
+  // Mantém o total original.
   order.total = baseOrderTotal;
 
   // Salva a escolha no Session Storage.
@@ -220,33 +231,31 @@ function declineUpsell() {
     JSON.stringify(order)
   );
 
-  // Impede novos cliques.
+  // Impede cliques repetidos.
   disableOfferButtons();
 
-  // Mostra a confirmação.
+  // Mostra a confirmação para o cliente.
   showMessage(
     "→",
-    "Oferta não adicionada",
-    "Seu pedido continuará com o valor original."
+    "Pedido mantido",
+    "Seu pedido será finalizado com o valor original."
   );
 
-  // Registra a escolha no Console.
-  console.log("Upsell recusado:", upsell);
-
-   // Aguarda 1,5 segundo e abre o Downsell.
-  setTimeout(() => {
-    window.location.href = "downsell.html";
-  }, 1500);
+  // Registra o resultado no Console.
+  console.log("Downsell recusado:", downsell);
 }
 
 // Aguarda o clique no botão de aceitar.
-acceptButton.addEventListener("click", acceptUpsell);
+acceptButton.addEventListener(
+  "click",
+  acceptDownsell
+);
 
 // Aguarda o clique no botão de recusar.
 declineButton.addEventListener(
   "click",
-  declineUpsell
+  declineDownsell
 );
 
-// Preenche o resumo assim que a página é carregada.
+// Preenche as informações quando a página é carregada.
 updateOrderPreview();
