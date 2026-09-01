@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Confirmação do pedido VitaCore Balance."
+  >
+
+  <title>Pedido Confirmado — VitaCore Balance</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/thank-you.css">
+</head>
+
+<body>
+  <header class="thank-you-header">
+    <div class="container thank-you-header-content">
+      <a class="brand" href="index.html">
+        <span class="mark">V</span>
+        <span>VitaCore</span>
+      </a>
+
+      <p class="order-status">
+        <span>✓</span>
+        Pedido confirmado
+      </p>
+    </div>
+  </header>
+
+  <main class="thank-you-page">
+    <div class="container">
+      <!-- Progresso concluído -->
+
+      <div class="progress">
+        <div class="progress-item completed">
+          <span>✓</span>
+          <p>Pedido</p>
+        </div>
+
+        <div class="progress-line completed"></div>
+
+        <div class="progress-item completed">
+          <span>✓</span>
+          <p>Ofertas</p>
+        </div>
+
+        <div class="progress-line completed"></div>
+
+        <div class="progress-item completed">
+          <span>✓</span>
+          <p>Confirmação</p>
+        </div>
+      </div>
+
+      <!-- Confirmação principal -->
+
+      <section class="confirmation-card">
+        <div class="confirmation-content">
+          <div class="confirmation-icon">✓</div>
+
+          <p class="eyebrow">Pedido realizado com sucesso</p>
+
+          <h1>
+            Obrigada pela sua compra,
+            <span id="customer-name">Cliente</span>!
+          </h1>
+
+          <p class="confirmation-lead">
+            Seu pedido foi recebido e já está sendo preparado.
+            Confira abaixo todos os detalhes da compra.
+          </p>
+
+          <div class="order-identification">
+            <div>
+              <span>Número do pedido</span>
+              <strong id="order-number">VTC-000000</strong>
+            </div>
+
+            <div>
+              <span>Data do pedido</span>
+              <strong id="order-date">--/--/----</strong>
+            </div>
+
+            <div>
+              <span>Status</span>
+              <strong class="status-approved">Confirmado</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="confirmation-product">
+          <img
+            src="assets/images/vitacore-produto.jpg"
+            alt="VitaCore Balance"
+          >
+
+          <p>Seu pedido VitaCore está confirmado.</p>
+        </div>
+      </section>
+
+      <!-- Resumo completo -->
+
+      <section class="final-order">
+        <header class="section-heading">
+          <p class="eyebrow">Resumo final</p>
+          <h2>Detalhes do pedido</h2>
+        </header>
+
+        <div class="order-items">
+          <!-- Produto principal -->
+
+          <article class="order-item">
+            <div class="item-image">
+              <img
+                src="assets/images/vitacore-produto.jpg"
+                alt="VitaCore Balance"
+              >
+            </div>
+
+            <div class="item-information">
+              <p class="item-label">Oferta principal</p>
+              <h3 id="main-plan">Rotina Completa</h3>
+
+              <p id="main-description">
+                3 frascos • 90 porções
+              </p>
+            </div>
+
+            <div class="item-value">
+              <span id="main-quantity">3 unidades</span>
+              <strong id="main-total">R$ 239,00</strong>
+            </div>
+          </article>
+
+          <!-- Upsell -->
+
+          <article class="order-item" id="upsell-item">
+            <div class="item-image">
+              <img
+                src="assets/images/vitacore-produto.jpg"
+                alt="VitaCore Balance adicional"
+              >
+            </div>
+
+            <div class="item-information">
+              <p class="item-label">Oferta adicional</p>
+              <h3>VitaCore Balance</h3>
+              <p>2 frascos • 60 porções</p>
+            </div>
+
+            <div class="item-value">
+              <span>2 unidades</span>
+              <strong>R$ 149,00</strong>
+            </div>
+          </article>
+
+          <!-- Downsell -->
+
+          <article class="order-item" id="downsell-item">
+            <div class="item-image">
+              <img
+                src="assets/images/vitacore-produto.jpg"
+                alt="VitaCore Balance adicional"
+              >
+            </div>
+
+            <div class="item-information">
+              <p class="item-label">Última oferta</p>
+              <h3>VitaCore Balance</h3>
+              <p>1 frasco • 30 porções</p>
+            </div>
+
+            <div class="item-value">
+              <span>1 unidade</span>
+              <strong>R$ 79,00</strong>
+            </div>
+          </article>
+        </div>
+
+        <!-- Totais -->
+
+        <div class="order-totals">
+          <div>
+            <span>Quantidade total</span>
+            <strong id="total-quantity">3 frascos</strong>
+          </div>
+
+          <div>
+            <span>Entrega</span>
+            <strong>Grátis</strong>
+          </div>
+
+          <div>
+            <span>Forma de pagamento</span>
+            <strong id="payment-method">Pix</strong>
+          </div>
+
+          <div class="grand-total">
+            <span>Total do pedido</span>
+            <strong id="grand-total">R$ 239,00</strong>
+          </div>
+        </div>
+      </section>
+
+      <!-- Próximos passos -->
+
+      <section class="next-steps">
+        <header class="section-heading">
+          <p class="eyebrow">Próximos passos</p>
+          <h2>O que acontece agora?</h2>
+        </header>
+
+        <div class="steps-grid">
+          <article>
+            <span>01</span>
+
+            <div>
+              <h3>Confirmação</h3>
+
+              <p>
+                Você receberá a confirmação e os detalhes
+                do pedido no e-mail cadastrado.
+              </p>
+            </div>
+          </article>
+
+          <article>
+            <span>02</span>
+
+            <div>
+              <h3>Preparação</h3>
+
+              <p>
+                Os produtos serão separados e preparados
+                para o envio.
+              </p>
+            </div>
+          </article>
+
+          <article>
+            <span>03</span>
+
+            <div>
+              <h3>Rastreamento</h3>
+
+              <p>
+                O código de rastreamento será enviado
+                assim que o pedido for despachado.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Informações finais -->
+
+      <section class="support-card">
+        <div>
+          <span class="support-icon">?</span>
+
+          <div>
+            <h2>Precisa de ajuda?</h2>
+
+            <p>
+              Nossa equipe está disponível para ajudar com
+              dúvidas sobre seu pedido.
+            </p>
+          </div>
+        </div>
+
+        <a class="support-link" href="mailto:suporte@vitacore.com">
+          suporte@vitacore.com
+        </a>
+      </section>
+
+      <div class="return-area">
+        <a class="btn" href="index.html">
+          Voltar para o início
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script src="assets/js/thank-you.js"></script>
+</body>
+</html>

@@ -56,6 +56,18 @@ O projeto está sendo desenvolvido em etapas para demonstrar a construção e a 
 - Confirmação visual da escolha
 - Layout responsivo
 
+### Thank-you Page
+
+- Confirmação final do pedido
+- Geração e persistência do número do pedido
+- Exibição do cliente, data e forma de pagamento
+- Resumo dinâmico da oferta principal
+- Exibição somente das ofertas adicionais aceitas
+- Cálculo da quantidade total de frascos
+- Exibição do valor final
+- Orientações de acompanhamento do pedido
+- Layout responsivo
+
 ## Tecnologias
 
 - HTML5
@@ -73,20 +85,23 @@ vitacore-funnel/
 ├── checkout.html
 ├── upsell.html
 ├── downsell.html
+├── thank-you.html
 ├── README.md
 └── assets/
     ├── css/
     │   ├── styles.css
     │   ├── checkout.css
     │   ├── upsell.css
-    │   └── downsell.css
+    │   ├── downsell.css
+    │   └── thank-you.css
     ├── images/
     │   └── vitacore-produto.png
     └── js/
         ├── main.js
         ├── checkout.js
         ├── upsell.js
-        └── downsell.js
+        ├── downsell.js
+        └── thank-you.js
 
 ## Como executar
 
@@ -97,15 +112,12 @@ vitacore-funnel/
 
 ## Fluxo atual
 
-```text
+```
 Sales Page → Seleção da oferta → Checkout → Validação → Confirmação
 ```
 
 ## Próximas etapas
 
-- Upsell
-- Downsell
-- Thank-you Page
 - Captura e persistência de UTMs
 - Atribuição de afiliados
 - Cookies

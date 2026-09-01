@@ -195,6 +195,11 @@ function acceptUpsell() {
 
   // Registra a escolha no Console.
   console.log("Upsell aceito:", upsell);
+  
+  // Aguarda a confirmação visual e abre a página final.
+    setTimeout(() => {
+    window.location.href = "thank-you.html";
+    }, 1500);
 }
 
 /**
