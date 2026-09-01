@@ -202,6 +202,11 @@ function acceptDownsell() {
 
   // Registra o resultado no Console.
   console.log("Downsell aceito:", downsell);
+
+  // Aguarda a confirmação visual e abre a página final.
+    setTimeout(() => {
+    window.location.href = "thank-you.html";
+    }, 1500);
 }
 
 /**
@@ -243,6 +248,11 @@ function declineDownsell() {
 
   // Registra o resultado no Console.
   console.log("Downsell recusado:", downsell);
+
+  // Finaliza o pedido sem adicionar a oferta.
+    setTimeout(() => {
+    window.location.href = "thank-you.html";
+    }, 1500);
 }
 
 // Aguarda o clique no botão de aceitar.
