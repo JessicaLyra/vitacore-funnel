@@ -272,16 +272,25 @@ function validateForm() {
 }
 
 /**
- * Cria um objeto com os dados necessários
- * para as próximas etapas do funil.
- *
- * Não armazenamos e-mail, telefone ou endereço,
- * pois esses dados não serão usados no Upsell.
+ * Cria o pedido e associa a campanha responsável pela conversão.
  *
  * @returns {object} Pedido criado.
  */
 function createOrder() {
-  // Monta o objeto com os dados do pedido.
+  // Obtém os dados capturados pelo campaign.js.
+  //
+  // O operador ?. evita erro caso VitaCoreCampaign não exista.
+  // O objeto vazio é usado como segurança caso nenhuma campanha exista.
+  const campaign =
+    window.VitaCoreCampaign?.getCampaign() || {};
+
+  // Cria uma fotografia dos dados no momento da compra.
+  //
+  // Isso evita que futuras mudanças feitas no objeto original
+  // alterem a campanha associada a este pedido.
+  const campaignSnapshot = { ...campaign };
+
+  // Monta o objeto principal do pedido.
   const order = {
     planId: selectedPlanId,
     planName: selectedPlan.name,
@@ -293,25 +302,30 @@ function createOrder() {
       .value
       .trim(),
 
-    country: document.getElementById(
-      "country"
-    ).value,
+    country: document.getElementById("country").value,
 
     paymentMethod: document.getElementById(
       "payment-method"
     ).value,
 
-    createdAt: new Date().toISOString()
+    createdAt: new Date().toISOString(),
+
+    // Guarda a campanha dentro do próprio pedido.
+    campaign: campaignSnapshot
   };
 
-  // Converte o objeto para texto e guarda
-  // no Session Storage do navegador.
+  // Converte o pedido para JSON e salva durante a sessão.
   sessionStorage.setItem(
     "vitacoreOrder",
     JSON.stringify(order)
   );
 
-  // Devolve o pedido criado.
+  // Mostra o pedido completo no Console para conferência.
+  console.log(
+    "Pedido criado com campanha:",
+    order
+  );
+
   return order;
 }
 
