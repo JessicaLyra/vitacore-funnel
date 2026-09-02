@@ -326,3 +326,103 @@ if (!storedOrder) {
   // Executa a montagem da página.
   initializeThankYouPage();
 }
+
+/**
+ * Formata um valor técnico para ficar mais apresentável.
+ *
+ * Exemplos:
+ * "facebook" vira "Facebook"
+ * "buygoods" vira "Buygoods"
+ *
+ * @param {string} value Valor recebido da campanha.
+ * @param {string} fallback Texto usado quando o valor não existir.
+ * @returns {string} Valor formatado.
+ */
+function formatCampaignValue(value, fallback) {
+  // Retorna o texto padrão caso o parâmetro esteja vazio.
+  if (!value) {
+    return fallback;
+  }
+
+  // Troca "_" e "-" por espaços.
+  const normalizedValue = value
+    .replace(/[_-]/g, " ")
+    .trim();
+
+  // Coloca a primeira letra de cada palavra em maiúscula.
+  return normalizedValue.replace(
+    /\b\w/g,
+    (letter) => letter.toUpperCase()
+  );
+}
+
+/**
+ * Exibe na página a campanha associada ao pedido.
+ *
+ * @param {object} order Pedido recuperado do Session Storage.
+ */
+function renderCampaignSummary(order) {
+  // Recupera a campanha que foi salva dentro do pedido.
+  const campaign = order.campaign || {};
+
+  // Seleciona os campos criados no thank-you.html.
+  const sourceElement = document.getElementById(
+    "campaign-source"
+  );
+
+  const nameElement = document.getElementById(
+    "campaign-name"
+  );
+
+  const affiliateElement = document.getElementById(
+    "campaign-affiliate"
+  );
+
+  const platformElement = document.getElementById(
+    "campaign-platform"
+  );
+
+  // Atualiza a origem da campanha.
+  sourceElement.textContent = formatCampaignValue(
+    campaign.utm_source,
+    "Direto"
+  );
+
+  // Atualiza o nome da campanha.
+  nameElement.textContent = formatCampaignValue(
+    campaign.utm_campaign,
+    "Não informada"
+  );
+
+  // O ID do afiliado não é alterado, pois pode ser sensível
+  // a letras maiúsculas, números e caracteres específicos.
+  affiliateElement.textContent =
+    campaign.affiliate_id || "Não informado";
+
+  // Atualiza o nome da plataforma.
+  platformElement.textContent = formatCampaignValue(
+    campaign.platform,
+    "Não informada"
+  );
+}
+
+// Recupera novamente o pedido armazenado na sessão.
+const storedCampaignOrder = sessionStorage.getItem(
+  "vitacoreOrder"
+);
+
+// Confirma que existe um pedido antes de tentar exibir a campanha.
+if (storedCampaignOrder) {
+  try {
+    const campaignOrder = JSON.parse(
+      storedCampaignOrder
+    );
+
+    renderCampaignSummary(campaignOrder);
+  } catch (error) {
+    console.error(
+      "Não foi possível exibir a campanha do pedido:",
+      error
+    );
+  }
+}

@@ -68,6 +68,17 @@ O projeto está sendo desenvolvido em etapas para demonstrar a construção e a 
 - Orientações de acompanhamento do pedido
 - Layout responsivo
 
+### Rastreamento de campanhas
+
+- Captura de parâmetros UTM pela URL
+- Captura de `affiliate_id` e `click_id`
+- Identificação de plataforma, mercado e moeda
+- Persistência da campanha durante todo o funil
+- Identificação de acessos diretos
+- Modelo de atribuição last-touch
+- Associação da campanha ao pedido
+- Exibição da origem da conversão na Thank-you Page
+
 ## Tecnologias
 
 - HTML5
@@ -97,6 +108,7 @@ vitacore-funnel/
     ├── images/
     │   └── vitacore-produto.png
     └── js/
+        ├── campaign.js
         ├── main.js
         ├── checkout.js
         ├── upsell.js
